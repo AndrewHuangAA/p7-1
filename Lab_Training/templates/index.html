@@ -1,0 +1,119 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} home {% endblock %}
+{% block content %}
+{% csrf_token %}
+
+<script>csrf_token= "{{ csrf_token }}"</script>
+{% comment %} <link rel="stylesheet" href="/Users/andrew/Documents/Django/Lab_Training/static/css/figure1.css"> <!-- 連接 CSS 文件 -->
+<link rel="stylesheet" href="/Users/andrew/Documents/Django/Lab_Training/static/css/figure2.css"> <!-- 連接 CSS 文件 --> {% endcomment %}
+<link rel="stylesheet" href="{% static 'css/figure1.css' %}"> <!-- 连接 CSS 文件 -->
+<link rel="stylesheet" href="{% static 'css/figure2.css' %}"> <!-- 连接 CSS 文件 -->
+
+<!-- highcharts -->
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- jQuery日期用 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+
+<div class="container">
+    <div class="card mt-3">
+        <figure class="highcharts-figure">
+            <div id="figure_one"></div>
+            <p class="highcharts-description">
+                Basic line chart showing trends in a dataset. This chart includes the
+                <code>series-label</code> module, which adds a label to each line for
+                enhanced readability.
+            </p>
+        </figure>    
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header fs-5 fw-bold">
+            Search Form
+        </div>
+        <div id="message"></div>
+        <div class='card-body'>
+            <form id="ajax_form">
+                <label for="stock_id" class="form-label">First_Stock:</label>
+                <input type="text" class="form-control" name="stock_id" placeholder="eg. TSLA">
+            </form>
+            <form id="ajax_form">
+                <label for="sub_stock_id" class="form-label">Second_Stock:</label>
+                <input type="text" class="form-control" name="sub_stock_id" placeholder="eg. TSLA">
+            </form>
+            <hr>
+            <button class="btn btn-outline-primary" id="submit">送出</button>
+        </div>
+        <div class="date-input">
+            <label for="start-date">Start Date</label>
+            <input type="text" id="start-date" placeholder="YYYY-MM-DD">
+            <button id="start-date-picker">📅</button>
+        </div>
+        <div class="date-input">
+            <label for="end-date">End Date </label>
+            <input type="text" id="end-date" placeholder="YYYY-MM-DD">
+            <button id="end-date-picker">📅</button>
+        </div>
+    </div>
+
+    <div id="figure_two"></div>
+
+    <div class="card mt-3">
+        <table id="buy_sell_table" class="display table table-striped">
+            <thead>
+            </thead>
+            <tbody>                   
+            </tbody>
+        </table>
+    </div>
+
+    <div id="bollinger_bands_plot"></div>
+
+    <div id="profit_loss_plot"></div>
+
+    <div class="card mt-3">
+        <table id="profit_loss_table" class="display table table-striped">
+            <thead>
+            </thead>
+            <tbody>                   
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+{% comment %} <div style="width:90%;">
+    <div id ="profit_loss_plot" style="height: 550px; margin: 1%;">
+    </div>
+</div> {% endcomment %}
+ 
